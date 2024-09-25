@@ -3,39 +3,55 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 
 @TeleOp(name = "Luna")
 public class LunaTele extends OpMode {
 
-    DcMotor Fr;
-    DcMotor Fl;
-    DcMotor Rr;
-    DcMotor Rl;
+    DcMotor fR;
+    DcMotor fL;
+    DcMotor rR;
+    DcMotor rL;
+
+    DcMotor slide;
+    DcMotor manipulatorLift;
+    Servo leftGrab;
+    Servo clawVert;
 
     public void init(){
 
-        Fr = hardwareMap.dcMotor.get("FrontRight");
-        Fl = hardwareMap.dcMotor.get("FrontLeft");
-        Rr = hardwareMap.dcMotor.get("RearRight");
-        Rl = hardwareMap.dcMotor.get("RearLeft");
-
-        Fr.setDirection(DcMotor.Direction.REVERSE);
-        Rl.setDirection(DcMotor.Direction.REVERSE);
+        fR = hardwareMap.dcMotor.get("FrontRight");
+        fL = hardwareMap.dcMotor.get("FrontLeft");
+        rR = hardwareMap.dcMotor.get("RearRight");
+        rL = hardwareMap.dcMotor.get("RearLeft");
+        manipulatorLift = hardwareMap.dcMotor.get("manipulatorVert");
+        slide = hardwareMap.dcMotor.get("slide");
+        leftGrab = hardwareMap.servo.get("claw");
+        clawVert = hardwareMap.servo.get("clawVert");
+        
+        fR.setDirection(DcMotor.Direction.REVERSE);
+        rR.setDirection(DcMotor.Direction.REVERSE);
+        manipulatorLift.setDirection((DcMotorSimple.Direction.REVERSE));
 
     }
 
     public void loop(){
-        double forward = gamepad1.left_stick_y;
-        double strafe = gamepad1.left_stick_x;
-        double turn = gamepad2.right_stick_x;
+        slide.setTargetPosition(1000);
 
-        Fr.setPower(forward-strafe-turn);
-        Fl.setPower(forward+strafe+turn);
-        Rr.setPower(forward+strafe-turn);
-        Rl.setPower(forward-strafe+turn);
+        double forward = 0.9 * gamepad1.left_stick_y;
+        double strafe = 0.9 * gamepad1.left_stick_x;
+        double turn = 0.9 * gamepad1.right_stick_x;
+        double lift =  0.25 * gamepad2.left_stick_y;
+        double slider = gamepad2.left_stick_x;
 
-
+        fR.setPower(forward+strafe+turn);
+        fL.setPower(forward-strafe-turn);
+        rR.setPower(forward-strafe+turn);
+        rL.setPower(forward+strafe-turn);
+        manipulatorLift.setPower(lift);
+        slide.setPower(slider);
 
 
 
