@@ -14,11 +14,11 @@ public class LunaTele extends OpMode {
     DcMotor fL;
     DcMotor rR;
     DcMotor rL;
-
-    //DcMotor slide;
+    DcMotor slide;
     DcMotor manipulatorLift;
-    /*Servo leftGrab;
-    Servo clawVert;*/
+    Servo wheel;
+    Servo spin;
+
 
     public void init(){
 
@@ -27,11 +27,12 @@ public class LunaTele extends OpMode {
         rR = hardwareMap.dcMotor.get("RearRight");
         rL = hardwareMap.dcMotor.get("RearLeft");
         manipulatorLift = hardwareMap.dcMotor.get("clawLift");
-        /*slide = hardwareMap.dcMotor.get("slide");*/
-        /*leftGrab = hardwareMap.servo.get("claw");
-        clawVert = hardwareMap.servo.get("clawVert"); */
+        slide = hardwareMap.dcMotor.get("slide");
+        wheel = hardwareMap.servo.get("wheel");
+        spin = hardwareMap.servo.get("turn");
+
         
-        fR.setDirection(DcMotor.Direction.REVERSE);
+        //fR.setDirection(DcMotor.Direction.REVERSE);
         rR.setDirection(DcMotor.Direction.REVERSE);
         manipulatorLift.setDirection((DcMotorSimple.Direction.REVERSE));
 
@@ -40,39 +41,45 @@ public class LunaTele extends OpMode {
     public void loop(){
         // slide.setTargetPosition(1000);
 
-        double forward = 0.9 * gamepad1.left_stick_y;
-        double strafe = 0.9 * gamepad1.left_stick_x;
-        double turn = 0.9 * gamepad1.right_stick_x;
-        double lift =  0.25 * gamepad2.left_stick_y;
-        //double slider = gamepad2.right_stick_y;
+        double forward = 0.8 * gamepad1.left_stick_y;
+        double strafe = 0.8 * gamepad1.left_stick_x;
+        double turn = 0.8 * gamepad1.right_stick_x;
+        double lift =  0.55 * gamepad2.left_stick_y;
+        double slider = gamepad2.right_stick_y;
 
         fR.setPower(forward+strafe+turn);
         fL.setPower(forward-strafe-turn);
         rR.setPower(forward-strafe+turn);
         rL.setPower(forward+strafe-turn);
+
         manipulatorLift.setPower(lift);
-        //slide.setPower(slider);
+        slide.setPower(slider);
 
-        /*
-        double forward = gamepad1.left_stick_y;
-        double turn = gamepad1.left_stick_x;
-        double arm = gamepad2.left_stick_y;
-        double turntable = gamepad1.left_trigger;
 
-        ClawMotor.setPower(arm*.5);
-        RrMotor.setPower(forward + turn);
-        RlMotor.setPower(-forward + turn);
-        TurnTable.setPower(turntable);
-
-         if (gamepad2.a){
-            Claw.setPosition(1);
+       /* if (gamepad2.a) {
+            wheel.setPosition(.3);
         }
-        if (gamepad2.b){
-            Claw.setPosition(.8);
+        if (gamepad2.x) {
+            wheel.setPosition(.5);
         }
-        if (gamepad2.x){
-            Claw.setPosition(.5);
-            */
+         */
+
+        while (gamepad2.a) {
+            wheel.setPosition(1);
+
+        }
+
+
+
+        if  (gamepad2.dpad_right) {
+            spin.setPosition(0.1);
+        }
+        if (gamepad2.dpad_left) {
+            spin.setPosition(.8);
+        }
+        if (gamepad2.dpad_down) {
+            spin.setPosition(.5);
+        }
 
     }
 }
