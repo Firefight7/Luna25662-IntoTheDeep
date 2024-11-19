@@ -10,6 +10,7 @@ public class LunaAuto extends LinearOpMode {
     DcMotor fL;
     DcMotor rR;
     DcMotor rL;
+    DcMotor manipulatorLift;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -17,44 +18,16 @@ public class LunaAuto extends LinearOpMode {
         fL = hardwareMap.dcMotor.get("FrontLeft");
         rR = hardwareMap.dcMotor.get("RearRight");
         rL = hardwareMap.dcMotor.get("RearLeft");
-
-       /* int fR = 0;
-        int fL = 0;
-        int rR = 0;
-        int rL = 0;
-
-        fR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        fL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        fR Position = 0;
-        fL Position = 0;
-        rR Position = 0;
-        rL Position = 0;
-
-        waitForStart();
-
-        int desiredPosition = 1000; //Position desired in (ticks)
-        motor.setTargetPosition(desiredPosition);
-        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION); */ 
-
-        /* fR.setPower(1);
-        fL.setPower(1);
-        rR.setPower(1);
-        rL.setPower(1);
-        sleep(1000);
-        fR.setPower(0);
-        fL.setPower(0);
-        rR.setPower(0);
-        rL.setPower(0); */
+        manipulatorLift = hardwareMap.dcMotor.get("clawLift");
+        manipulatorLift.setDirection(DcMotor.Direction.REVERSE);
 
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
 
-            drive(50,50,50,50, 0.5);
+            drive(-547,547,-547,547, 0.7);
             // Sets ticks for encoders
+            manipulatorLift.setPower(.15);
 
         }
     }
@@ -89,5 +62,7 @@ public class LunaAuto extends LinearOpMode {
         rL.setPower(0);
         fR.setPower(0);
         fL.setPower(0);
+        //test to see if sleep works
+        sleep(100);
     }
 }
