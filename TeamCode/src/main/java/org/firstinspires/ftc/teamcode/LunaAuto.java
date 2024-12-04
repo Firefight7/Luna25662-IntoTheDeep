@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@Autonomous
+@Autonomous(name = "LunaAuto")
 public class LunaAuto extends LinearOpMode {
     DcMotor fR;
     DcMotor fL;
@@ -21,13 +21,13 @@ public class LunaAuto extends LinearOpMode {
         manipulatorLift = hardwareMap.dcMotor.get("clawLift");
         manipulatorLift.setDirection(DcMotor.Direction.REVERSE);
 
-        if (isStopRequested()) return;
+        //if (isStopRequested()) return;
 
         while (opModeIsActive()) {
 
             drive(-547,547,-547,547, 0.7);
             // Sets ticks for encoders
-            manipulatorLift.setPower(.15);
+            manipulatorLift.setPower(-.25);
 
         }
     }

@@ -38,7 +38,8 @@ public class LunaTele extends OpMode {
         
         //fR.setDirection(DcMotor.Direction.REVERSE);
         rR.setDirection(DcMotor.Direction.REVERSE);
-        manipulatorLift.setDirection(DcMotor.Direction.REVERSE);
+        //manipulatorLift.setDirection(DcMotor.Direction.REVERSE);
+        slide.setDirection(DcMotor.Direction.REVERSE);
 
     }
 
@@ -60,7 +61,7 @@ public class LunaTele extends OpMode {
         rR.setPower(forward-strafe+turn);
         rL.setPower(forward+strafe-turn);
 
-        manipulatorLift.setPower(lift+.15);
+        manipulatorLift.setPower(lift-.15);
         slide.setPower(slider);
 
 //Power for intake
@@ -80,10 +81,10 @@ public class LunaTele extends OpMode {
 
 //Power for spin
         if (gamepad2.y) {
-            spin.setPower(.5);
+            spin.setPower(.3);
         }
         else if (gamepad2.x) {
-            spin.setPower(-.5);
+            spin.setPower(-.3);
         }
         else {
             spin.setPower(0);
