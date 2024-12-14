@@ -36,7 +36,7 @@ public class LunaTele extends OpMode {
         spin = hardwareMap.crservo.get("turn");
 
         
-        //fR.setDirection(DcMotor.Direction.REVERSE);
+        fR.setDirection(DcMotor.Direction.REVERSE);
         rR.setDirection(DcMotor.Direction.REVERSE);
         //manipulatorLift.setDirection(DcMotor.Direction.REVERSE);
         slide.setDirection(DcMotor.Direction.REVERSE);
