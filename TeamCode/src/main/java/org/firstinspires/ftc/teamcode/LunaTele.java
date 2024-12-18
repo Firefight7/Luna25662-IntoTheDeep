@@ -38,8 +38,8 @@ public class LunaTele extends OpMode {
         
         fR.setDirection(DcMotor.Direction.REVERSE);
         rR.setDirection(DcMotor.Direction.REVERSE);
-        //manipulatorLift.setDirection(DcMotor.Direction.REVERSE);
-        slide.setDirection(DcMotor.Direction.REVERSE);
+        manipulatorLift.setDirection(DcMotor.Direction.REVERSE);
+        //slide.setDirection(DcMotor.Direction.REVERSE);
 
     }
 

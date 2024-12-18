@@ -26,12 +26,12 @@ public class NetZoneAuto extends LinearOpMode {
         waitForStart();
             while (opModeIsActive()) {
 
-
+                manipulatorLift.setPower(-.25);
                 //encoderMovement(0,0,0,0);
-
-                drive(-1000, -1000, 1000, 1000, 0.7);
+                drive(-1600, -1600, 1600, 1600, 0.7);
+                sleep(30000);
                 // Sets ticks for encoders
-                manipulatorLift.setPower(+.25);
+
 
             }
     }
@@ -57,20 +57,11 @@ public class NetZoneAuto extends LinearOpMode {
         fR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         fL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        sleep(20000);
-
         // Blocking While Loop: doesn't break until all 4 motors have stopped moving
         // Sets power of motors to 0 after the loop breaks
 
-        /*while (opModeIsActive() && (rR.isBusy() || rL.isBusy() || fR.isBusy() || fL.isBusy())) {
-
-            rR.setPower(0);
-            rL.setPower(0);
-            fR.setPower(0);
-            fL.setPower(0);
-            //test to see if sleep works
-            //sleep(100);
-        }*/
+        while (opModeIsActive() && (rR.isBusy() || rL.isBusy() || fR.isBusy() || fL.isBusy())) {
+        }
     }
 
 
