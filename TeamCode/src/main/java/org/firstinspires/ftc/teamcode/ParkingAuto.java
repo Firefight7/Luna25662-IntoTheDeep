@@ -26,8 +26,6 @@ public class ParkingAuto extends LinearOpMode {
         waitForStart();
             while (opModeIsActive()) {
 
-
-
                 manipulatorLift.setPower(+.5);
                 sleep(1000);
 
@@ -60,8 +58,6 @@ public class ParkingAuto extends LinearOpMode {
         rL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         fR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         fL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        sleep(30000);
 
         // Blocking While Loop: doesn't break until all 4 motors have stopped moving
         // Sets power of motors to 0 after the loop breaks

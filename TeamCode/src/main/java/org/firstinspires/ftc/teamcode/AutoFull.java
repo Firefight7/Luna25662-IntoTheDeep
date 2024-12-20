@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@Autonomous(name = "NetZoneBucket")
-public class NetZoneBucket extends LinearOpMode {
+@Autonomous(name = "AutoFull")
+public class AutoFull extends LinearOpMode {
     DcMotor fR;
     DcMotor fL;
     DcMotor rR;
@@ -47,16 +47,88 @@ public class NetZoneBucket extends LinearOpMode {
     public void cubeGrab () {
 
         intake.setPower(-1);
-        sleep(2000);
+        sleep(2000);  //prev 2000
 
         manipulatorLift.setPower(+.55);
 
         straight(790,.8);
         //+ go straign - go back
-        sleep(1000);
+        sleep(100);   //prev 1000
 
         strafe(-1700,.8);
         //+ strafe right - strafe left
+        sleep(100);    //prev 1000
+
+        turn(1600,.8);
+        //+ turn left - turn right
+        sleep(100);     //prev 1000
+
+   /*     straight(50,.8);
+        //+ go straign - go back
+        sleep(100);   //prev 1000
+       //test to see if it needs to go strAIGHT BEFROE DUMP
+    */
+
+        slider(-6100,.7);   //prev 6100   test based on spring condition
+        sleep(5000);   //prev 5000
+
+        intake.setPower(1);
+        sleep(2000);  //prev 2000
+        intake.setPower(0);
+        sleep(1000);    //prev 1000
+
+        manipulatorLift.setPower(+1);
+        sleep(1000);    //prev 1000
+        slider(6000,.7);
+        sleep(3000);    //prev 1000
+        manipulatorLift.setPower(+.2);
+        sleep(100);
+
+        //End of first cycle
+
+
+
+
+        straight(200,.8);
+        //+ go straign - go back
+        sleep(1000);
+
+        turn(-600,.8);
+        //+ turn left - turn
+        sleep(1000);
+
+        straight(-690,.8);
+        //+ go straign - go back
+        sleep(1000);
+
+        strafe(875,.8);
+        //+ strafe right - strafe left
+        sleep(1000);
+
+        straight(100,.8);
+        //+ go straign - go back
+        sleep(1000);
+
+        intake.setPower(1);
+        sleep(1000);
+
+        manipulatorLift.setPower(+.1);
+
+        intake.setPower(-1);
+        sleep(2000);
+/*
+        manipulatorLift.setPower(+.55);
+
+        straight(-300,.8);
+        //+ go straign - go back
+        sleep(1000);
+
+        strafe(-1000,.8);
+        //+ strafe right - strafe left
+        sleep(1000);
+
+        straight(600,.8);
+        //+ go straign - go back
         sleep(1000);
 
         turn(1600,.8);
@@ -75,15 +147,9 @@ public class NetZoneBucket extends LinearOpMode {
         sleep(1000);
         slider(6000,.7);
         sleep(1000);
-        manipulatorLift.setPower(+.2);
-
+        manipulatorLift.setPower(+.2);  */
 
     }
-
-
-
-
-
 
     public void drive(int rB, int lB, int rF, int lF, double power) {
 
