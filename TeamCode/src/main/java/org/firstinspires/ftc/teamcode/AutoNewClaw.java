@@ -1,4 +1,3 @@
-
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -7,8 +6,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "AutoFull")
-public class AutoFull extends LinearOpMode {
+@Autonomous(name = "AutoNewClaw")
+public class AutoNewClaw extends LinearOpMode {
     DcMotor fR;
     DcMotor fL;
     DcMotor rR;
@@ -16,7 +15,7 @@ public class AutoFull extends LinearOpMode {
     DcMotor manipulatorLift;
     DcMotor slide;
     CRServo intake;
-    Servo spin;
+    CRServo spin;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -28,7 +27,7 @@ public class AutoFull extends LinearOpMode {
         //manipulatorLift.setDirection(DcMotor.Direction.REVERSE);
         intake = hardwareMap.crservo.get("intake");
         slide = hardwareMap.dcMotor.get("slide");
-        spin = hardwareMap.servo.get("turn");
+        spin = hardwareMap.crservo.get("turn");
 
 
         //if (isStopRequested()) return;
@@ -43,116 +42,91 @@ public class AutoFull extends LinearOpMode {
             sleep(30000);*/
             // Sets ticks for encoders
 
-
         }
     }
 
     public void cubeGrab () {
 
-        spin.setPosition(.87);
-
-        intake.setPower(-1);
-        sleep(2000);  //prev 2000
-
         manipulatorLift.setPower(-.55);
+        sleep(100);
 
-        straight(790,.8);
+        straight(1380,.8);
         //+ go straign - go back
-        sleep(100);   //prev 1000
+        sleep(100);
 
-        strafe(-1700,.8);
-        //+ strafe right - strafe left
-        sleep(100);    //prev 1000
+        manipulatorLift.setPower(.1);
+        sleep(1000);
 
-        turn(1600,.8);
-        //+ turn left - turn right
-        sleep(100);     //prev 1000
-
-   /*     straight(50,.8);
-        //+ go straign - go back
-        sleep(100);   //prev 1000
-       //test to see if it needs to go strAIGHT BEFROE DUMP
-    */
-
-        slider(-6100,.7);   //prev 6100   test based on spring condition
-        sleep(4000);   //prev 5000
-
-        intake.setPower(1);
-        sleep(1500);  //prev 2000
+        intake.setPower(.3);
+        sleep(1000);
         intake.setPower(0);
-        sleep(1500);    //prev 1000
-
-        manipulatorLift.setPower(-1);
-        sleep(1000);    //prev 1000
-        slider(6000,.7);
-        sleep(2000);    //prev 1000
-        manipulatorLift.setPower(-.2);
         sleep(100);
 
-
-        //End of first cycle
-
-        straight(200,.8);
+        straight(-500,.8);
         //+ go straign - go back
         sleep(100);
 
-        turn(-600,.8);
-        //+ turn left - turn
+        strafe(-1600,.8);
+        //+ strafe right - strafe
         sleep(100);
 
-        straight(-690,.8);
+        straight(800,.8);
         //+ go straign - go back
         sleep(100);
 
-        strafe(900,.8);
-        //+ strafe right - strafe left
+        turn(600,.8);
+        //+ turn left - turn right
         sleep(100);
 
         straight(105,.8);
         //+ go straign - go back
         sleep(100);
 
-        spin.setPosition(.8);
-/*
-        intake.setPower(1);
+        manipulatorLift.setPower(.5);
         sleep(1000);
-
-        manipulatorLift.setPower(+.5);
 
         intake.setPower(-1);
-        sleep(2000);
+        sleep(900);
+        intake.setPower(0);
+        sleep(100);
 
-        manipulatorLift.setPower(-.55);
+        manipulatorLift.setPower(-.5);
+        sleep(100);
 
-        straight(-105,.8);
-        //+ go straign - go back
-        sleep(1000);
-
-        strafe(-900,.8);
+        strafe(-2700,.8);
         //+ strafe right - strafe left
-        sleep(1000);
+        sleep(100);
 
         straight(700,.8);
         //+ go straign - go back
-        sleep(1000);
-
-        turn(600,.8);
-        //+ turn left - turn right
-        sleep(1000);
+        sleep(100);
 
         slider(-6100,.7);
-        sleep(5000);
+        sleep(4000);
 
-        intake.setPower(1);
-        sleep(2000);
-        intake.setPower(0);
+        intake.setPower(.3);
         sleep(1000);
+        intake.setPower(0);
+        sleep(100);
+
+        spin.setPower(.3);
+        sleep(350);
+        spin.setPower(-.3);
+        sleep(350);
+        spin.setPower(0);
 
         manipulatorLift.setPower(-1);
         sleep(1000);
         slider(6000,.7);
-        sleep(1000);
-        manipulatorLift.setPower(-.2); */
+        sleep(2000);
+        manipulatorLift.setPower(-.2);
+        sleep(100);
+
+
+
+
+
+
 
     }
 

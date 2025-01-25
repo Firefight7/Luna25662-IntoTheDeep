@@ -32,13 +32,13 @@ public class LunaTele extends OpMode {
         manipulatorLift = hardwareMap.dcMotor.get("clawLift");
         slide = hardwareMap.dcMotor.get("slide");
         intake = hardwareMap.crservo.get("intake");
-       // spin = hardwareMap.servo.get("turn");
+        //spin = hardwareMap.servo.get("turn");
         spin = hardwareMap.crservo.get("turn");
 
         
         fR.setDirection(DcMotor.Direction.REVERSE);
         rR.setDirection(DcMotor.Direction.REVERSE);
-        manipulatorLift.setDirection(DcMotor.Direction.REVERSE);
+        //manipulatorLift.setDirection(DcMotor.Direction.REVERSE);
         //slide.setDirection(DcMotor.Direction.REVERSE);
 
     }
@@ -61,16 +61,15 @@ public class LunaTele extends OpMode {
         rR.setPower(forward-strafe+turn);
         rL.setPower(forward+strafe-turn);
 
-        manipulatorLift.setPower(lift-.15);
+        manipulatorLift.setPower(lift-.05);
         slide.setPower(slider);
 
 //Power for intake
-        if (gamepad2.a) {
-            intake.setPower(1);
+        if (gamepad2.b) {
+            intake.setPower(.3);
         }
-        else if (gamepad2.b) {
-            intake.setDirection(CRServo.Direction.REVERSE);
-            intake.setPower(-.3);
+        else if (gamepad2.a) {
+            intake.setPower(-1);
         }
         else {
             intake.setPower(0);
@@ -79,7 +78,8 @@ public class LunaTele extends OpMode {
             intake.setPower(0);
         } */
 
-//Power for spin
+
+        //Power for spin
         if (gamepad2.y) {
             spin.setPower(.3);
         }
@@ -92,18 +92,18 @@ public class LunaTele extends OpMode {
 
         /* if (gamepad2.y) {
             spin.setPower(0);
-        } */
+        }
 
-// Position for spin
-      /* if  (gamepad2.dpad_right) {
-            spin.setPosition(.35);
+/* Position for spin
+        if  (gamepad2.y) {
+            spin.setPosition(.54);
         }
-        if (gamepad2.dpad_left) {
-            spin.setPosition(1.25);
+        if (gamepad2.x) {
+            spin.setPosition(.87);
         }
-        if (gamepad2.dpad_down) {
-            spin.setPosition(0.01);
-        }*/
+        if (gamepad2.right_bumper) {
+            spin.setPosition(.74);
+        } */
 
     }
 }
